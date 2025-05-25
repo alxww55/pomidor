@@ -1,7 +1,7 @@
 import flet as ft
 from gui.window_bar import WindowBar
 from gui.timer import Timer
-from gui.toolbar import Toolbar
+#from gui.toolbar import Toolbar
 
 class PomidorApp:
     def __init__(self, page: ft.Page):
@@ -27,10 +27,6 @@ class PomidorApp:
         window_bar = WindowBar(self.WHITE, self.ACC_GREY, self.RED, self.WINDOW, page)
         page.add(window_bar.add_window_bar())
 
-    def load_toolbar(self, page: ft.Page):
-        toolbar = Toolbar(self.WHITE, self.TOOLBAR_GREY)
-        page.add(toolbar.add_toolbar())
-
     def load_timer(self, page: ft.Page):
-        timer = Timer(self.WHITE, self.BG_GREY, page)
+        timer = Timer(self.WHITE, self.BG_GREY, self.TOOLBAR_GREY, page)
         page.add(timer.add_timer())
