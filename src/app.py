@@ -9,6 +9,7 @@ class PomidorApp:
         self.ACC_GREY = "#252525"
         self.TOOLBAR_GREY = "#2C2C2C"
         self.RED = "#F44336"
+        self.BLUE = "#0095FF"
         self.WHITE = "#FFFFFF"
         self.WINDOW = page.window
         page.route = "/concentration"
@@ -28,5 +29,5 @@ class PomidorApp:
         page.add(window_bar.add_window_bar())
 
     def load_timer(self, page: ft.Page):
-        timer = Timer(self.WHITE, self.BG_GREY, self.TOOLBAR_GREY, page)
+        timer = Timer(self.WHITE, self.BG_GREY, self.TOOLBAR_GREY, self.RED, self.BLUE, page)
         page.add(timer.add_timer())
