@@ -19,7 +19,7 @@ class WindowBar:
                             content=ft.Text(
                                 value="Pomidor", font_family="LexendDeca", size=20, color=self.WHITE
                             ),
-                            padding=ft.Padding(left=9, top=0, right=310, bottom=0)
+                            padding=ft.Padding(left=9, top=0, right=300, bottom=0)
                         ),
                         ft.Container(
                             content=ft.Icon(

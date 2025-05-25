@@ -1,12 +1,54 @@
 import flet as ft
+import time
 
 class Timer:
-    def __init__(self, white):
+    def __init__(self, white, bg_grey, page):
         # Incapsulation
         self.WHITE = white
-        self.TIME_VALUE = "25:00"
-        self.TEXT = ft.Text(value=self.TIME_VALUE, font_family="LexendDeca", size=20, color=self.WHITE)
-        self.TIMER = ft.Container(content=self.TEXT)
+        self.page = page
+        self.BG_GREY = bg_grey
+        self.minutes = 25
+        self.seconds = 0
+        self.is_running = False
+        self.is_paused = False
+        self.time_value = f"{self.minutes:02}:{self.seconds:02}"
+        self.TEXT = ft.Text(value=self.time_value, font_family="LexendDeca", size=126, color=self.WHITE)
+        self.START_BUTTON = ft.FilledButton(text="START", bgcolor=self.WHITE, width=160, style=ft.ButtonStyle(color=self.BG_GREY, text_style=ft.TextStyle(font_family="LexendDeca", size=17), shape=ft.RoundedRectangleBorder(radius=12)), visible=True, on_click=self.start_timer)
+        self.PAUSE_BUTTON = ft.FilledButton(text="PAUSE", bgcolor=self.WHITE, width=160, style=ft.ButtonStyle(color=self.BG_GREY, text_style=ft.TextStyle(font_family="LexendDeca", size=17), shape=ft.RoundedRectangleBorder(radius=12)), visible=False, on_click=self.pause_timer)
+        self.TIMER = ft.Column(controls=[ft.Container(content=self.TEXT, height=150, margin=ft.Margin(left=0, top=-10, right=0, bottom=18)), ft.Container(content=self.START_BUTTON), ft.Container(content=self.PAUSE_BUTTON, margin=ft.Margin(left=0, top=-10, right=0, bottom=0))], horizontal_alignment=ft.CrossAxisAlignment.CENTER)
 
     def add_timer(self) -> ft.Container:
         return self.TIMER
+
+    def start_timer(self, e):
+        if self.is_running:
+            return
+        self.is_running = True
+        self.is_paused = False
+        self.START_BUTTON.visible = False
+        self.PAUSE_BUTTON.visible = True
+        while self.minutes > 0 or self.seconds > 0:
+            if not self.is_running:
+                break
+            time.sleep(1)
+            if self.seconds == 0:
+                self.minutes -= 1
+                self.seconds = 59
+            else:
+                self.seconds -= 1
+            self.time_value = f"{self.minutes:02}:{self.seconds:02}"
+            self.TEXT.value = self.time_value
+            self.page.update()
+            if self.minutes == 0 and self.secound == 0:
+                self.is_running = False
+                self.is_paused = True
+                self.START_BUTTON.visible = True
+                self.PAUSE_BUTTON.visible = False
+                self.page.update()
+
+    def pause_timer(self, e):
+        self.is_paused = True
+        self.is_running = False
+        self.START_BUTTON.visible = True
+        self.PAUSE_BUTTON.visible = False
+        

@@ -19,13 +19,12 @@ class PomidorApp:
         page.padding = 0
         page.window.maximizable = False
         page.window.frameless = True
-        #page.vertical_alignment = ft.MainAxisAlignment.CENTER
         page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-        page.fonts = {"LexendDeca": "./fonts/LexendDeca-Regular.ttf"}
+        page.fonts = {"LexendDeca": "/fonts/LexendDeca-Regular.ttf"}
         page.update()
 
     def load_window_bar(self, page: ft.Page):
-        window_bar = WindowBar(self.WHITE, self.ACC_GREY, self.RED, self.WINDOW, ft.Page)
+        window_bar = WindowBar(self.WHITE, self.ACC_GREY, self.RED, self.WINDOW, page)
         page.add(window_bar.add_window_bar())
 
     def load_toolbar(self, page: ft.Page):
@@ -33,5 +32,5 @@ class PomidorApp:
         page.add(toolbar.add_toolbar())
 
     def load_timer(self, page: ft.Page):
-        timer = Timer(self.WHITE)
+        timer = Timer(self.WHITE, self.BG_GREY, page)
         page.add(timer.add_timer())
