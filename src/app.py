@@ -1,10 +1,16 @@
 import flet as ft
+from gui.window_bar import WindowBar
+from gui.timer import Timer
+from gui.toolbar import Toolbar
 
 class PomidorApp:
     def __init__(self, page: ft.Page):
         self.BG_GREY = "#1E1E1E"
         self.ACC_GREY = "#252525"
+        self.TOOLBAR_GREY = "#2C2C2C"
         self.RED = "#F44336"
+        self.WHITE = "#FFFFFF"
+        self.WINDOW = page.window
         page.route = "/concentration"
         page.window.width = 470
         page.window.height = 685
@@ -18,31 +24,14 @@ class PomidorApp:
         page.fonts = {"LexendDeca": "./fonts/LexendDeca-Regular.ttf"}
         page.update()
 
-    def window_bar(self, page: ft.Page):
-        BOTTOM_BAR = ft.WindowDragArea(
-            content=ft.Container(
-                content=ft.Row(
-                    controls=[
-                        ft.Container(content=ft.Image(src="icon.png", width=30, height=30)),
-                        ft.Container(content=ft.Text(value="Pomidor", font_family="LexendDeca", size=20), padding=ft.Padding(left=9, top=0, right=310, bottom=0)),
-                        ft.Container(content=ft.Icon(ft.Icons.CLOSE, color=self.RED, size=30), margin=ft.Margin(left=0, top=0, right=9, bottom=0), on_click=lambda e: page.window.close())
-                    ],
-                    spacing=0,
-                    alignment=ft.MainAxisAlignment.CENTER
-                ),
-                bgcolor=self.ACC_GREY,
-                height=49,
-                width=470,
-                padding=ft.Padding(left=9, top=0, right=9, bottom=0),
-                margin=0
-            )
-        )
-        page.add(BOTTOM_BAR)
-        page.update()
+    def load_window_bar(self, page: ft.Page):
+        window_bar = WindowBar(self.WHITE, self.ACC_GREY, self.RED, self.WINDOW, ft.Page)
+        page.add(window_bar.add_window_bar())
 
+    def load_toolbar(self, page: ft.Page):
+        toolbar = Toolbar(self.WHITE, self.TOOLBAR_GREY)
+        page.add(toolbar.add_toolbar())
 
-
-def main(page: ft.Page):
-    app = PomidorApp(page)
-    app.window_bar(page)
-    return app
+    def load_timer(self, page: ft.Page):
+        timer = Timer(self.WHITE)
+        page.add(timer.add_timer())
