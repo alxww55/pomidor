@@ -35,7 +35,7 @@ class Timer:
             border_radius=8,
             margin=ft.Margin(left=0, top=26, right=0, bottom=0)
         )
-        self.TIMER = ft.Column(controls=[self.TOOLBAR, ft.Container(content=self.TEXT, height=150, margin=ft.Margin(left=0, top=-10, right=0, bottom=18)), ft.Container(content=self.START_BUTTON), ft.Container(content=self.PAUSE_BUTTON, margin=ft.Margin(left=0, top=-10, right=0, bottom=0))], horizontal_alignment=ft.CrossAxisAlignment.CENTER)
+        self.TIMER = ft.Column(controls=[self.TOOLBAR, ft.Container(content=self.TEXT, height=150, margin=ft.Margin(left=0, top=-10, right=0, bottom=18)), ft.Container(content=self.START_BUTTON), ft.Container(content=self.PAUSE_BUTTON, margin=ft.Margin(left=0, top=-10, right=0, bottom=10))], horizontal_alignment=ft.CrossAxisAlignment.CENTER)
 
     def add_timer(self) -> ft.Container:
         return self.TIMER

@@ -33,5 +33,5 @@ class PomidorApp:
         page.add(timer.add_timer())
 
     def load_task_list(self, page: ft.Page):
-        task_list = TaskList(self.WHITE)
+        task_list = TaskList(self.WHITE, self.BG_GREY, self.TOOLBAR_GREY)
         page.add(task_list.add_task_list()) 
