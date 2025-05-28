@@ -109,17 +109,21 @@ class TaskList:
                             size=17
                         ),
                         on_change=self.task_line_through
-                    ), ft.IconButton(
-                        icon=ft.Icons.EDIT,
-                        icon_size=17,
-                        tooltip="Edit",
-                        icon_color=self.WHITE
-                    ), ft.IconButton(
-                        icon=ft.Icons.DELETE,
-                        icon_size=17,
-                        tooltip="Delete",
-                        icon_color=self.WHITE,
-                        on_click=self.delete_task
+                    ), ft.Row(
+                        controls=[
+                            ft.IconButton(
+                            icon=ft.Icons.EDIT,
+                            icon_size=17,
+                            tooltip="Edit",
+                            icon_color=self.WHITE
+                        ), ft.IconButton(
+                            icon=ft.Icons.DELETE,
+                            icon_size=17,
+                            tooltip="Delete",
+                            icon_color=self.WHITE,
+                            on_click=self.delete_task
+                            )
+                        ]
                     )
                 ], 
                 alignment=ft.MainAxisAlignment.SPACE_BETWEEN
@@ -128,13 +132,6 @@ class TaskList:
             new_task.controls[0].label = self.TASK_INPUT_FIELD.value
             self.TASKS_COLUMN.controls.append(new_task)
             self.TASK_INPUT_FIELD.value = ""
-            if new_task.controls[0].value:
-                new_task.controls[0].label_style.decoration=ft.TextDecoration.LINE_THROUGH
-                new_task.controls[0].label_style.decoration_color=self.TOOLBAR_GREY
-                new_task.controls[0].label_style.decoration_thickness=4
-                self.page.update()
-            else:
-                pass
             self.page.update()
             return
         
@@ -143,12 +140,12 @@ class TaskList:
             if task.controls[0].value:
                 task.controls[0].label_style.decoration = ft.TextDecoration.LINE_THROUGH
                 task.controls[0].label_style.decoration_color = self.WHITE
-                task.opacity = 0.5
+                task.controls[0].opacity = 0.5
                 task.controls[0].label_style.decoration_thickness = 3
             else:
                 task.controls[0].label_style.decoration = None
                 task.controls[0].label_style.decoration_color = None
-                task.opacity = 1
+                task.controls[0].opacity = 1
                 task.controls[0].label_style.decoration_thickness = None
         self.page.update()
         return
