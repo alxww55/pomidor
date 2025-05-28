@@ -98,15 +98,29 @@ class TaskList:
             return
             
         else:
-            new_task = ft.Checkbox(label="", value=False, label_style=ft.TextStyle(color=self.WHITE, font_family="LexendDeca", size=17), visible=True)
+            new_task = ft.Checkbox(label="", value=False, label_style=ft.TextStyle(color=self.WHITE, font_family="LexendDeca", size=17), on_change=self.task_line_through)
             new_task.label = self.TASK_INPUT_FIELD.value
             self.TASKS_COLUMN.controls.append(new_task)
             self.TASK_INPUT_FIELD.value = ""
-            # if new_task.value:
-            #     new_task.label_style.decoration=ft.TextDecoration.LINE_THROUGH
-            #     new_task.label_style.decoration_color=self.TOOLBAR_GREY
-            #     new_task.label_style.decoration_thickness=4
-            #     self.page.update()
+            if new_task.value:
+                new_task.label_style.decoration=ft.TextDecoration.LINE_THROUGH
+                new_task.label_style.decoration_color=self.TOOLBAR_GREY
+                new_task.label_style.decoration_thickness=4
+                self.page.update()
+            else:
+                pass
             self.page.update()
             return
         
+    def task_line_through(self, e):
+        for task in self.TASKS_COLUMN.controls:
+            if task.value:
+                task.label_style.decoration = ft.TextDecoration.LINE_THROUGH
+                task.label_style.decoration_color = self.TOOLBAR_GREY
+                task.label_style.decoration_thickness = 4
+            else:
+                task.label_style.decoration = None
+                task.label_style.decoration_color = None
+                task.label_style.decoration_thickness = None
+        self.page.update()
+        return
