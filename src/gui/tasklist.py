@@ -11,8 +11,9 @@ class TaskList:
 
         self.TASKS_COLUMN = ft.Column(
                 controls=[],
-                spacing=10,
-                alignment=ft.MainAxisAlignment.START
+                spacing=0,
+                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                width=430
         )
 
         self.TASK_CONTAINER = ft.Container(
@@ -48,7 +49,7 @@ class TaskList:
 
         self.TASK_INPUT_FIELD_CONTAINER = ft.Container(
             content=self.TASK_INPUT_FIELD,
-            margin=ft.Margin(59,0,0,0)
+            margin=ft.Margin(40,0,0,0)
         )
 
         self.TASK_INPUT_CONTAINER = ft.Container(
@@ -66,7 +67,9 @@ class TaskList:
             controls=[
                 self.TASK_CONTAINER,
                 self.TASK_INPUT_CONTAINER
-            ]
+            ],
+            alignment=ft.MainAxisAlignment.CENTER,
+            width=430
         )
 
     def add_task_list(self) -> ft.Container:
@@ -152,6 +155,7 @@ class TaskList:
     
     def delete_task(self, e):
         for task in self.TASKS_COLUMN.controls:
-            self.TASKS_COLUMN.controls.remove(task)
-            self.page.update()
-            return
+            if e.control == task.controls[1].controls[1]:
+                self.TASKS_COLUMN.controls.remove(task)
+                self.page.update()
+                return
