@@ -42,7 +42,7 @@ The **Pomodoro Technique** is a time management method developed by Francesco Ci
 
 - 📊 Daily/weekly stats
 
-## Things I learned
+## Things I learned 📚
 
 - OOP and its main principles
 - Modularity
