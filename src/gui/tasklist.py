@@ -118,7 +118,8 @@ class TaskList:
                             icon=ft.Icons.EDIT,
                             icon_size=17,
                             tooltip="Edit",
-                            icon_color=self.WHITE
+                            icon_color=self.WHITE,
+                            on_click=self.edit_task
                         ), ft.IconButton(
                             icon=ft.Icons.DELETE,
                             icon_size=17,
@@ -159,3 +160,25 @@ class TaskList:
                 self.TASKS_COLUMN.controls.remove(task)
                 self.page.update()
                 return
+            
+    def edit_task(self, e):
+        for task in self.TASKS_COLUMN.controls:
+            if e.control == task.controls[1].controls[0]:
+                current_text = task.controls[0].label
+                edit_field = ft.TextField(
+                    value=current_text,
+                    autofocus=True,
+                    text_style=ft.TextStyle(font_family="LexendDeca"),
+                    on_submit=lambda evt, t=task: self.save_edited_task(evt, t)
+                )
+                task.controls[0].visible = False
+                task.controls.insert(1, edit_field)
+                self.page.update()
+                return
+
+    def save_edited_task(self, e, task):
+        new_text = e.control.value
+        task.controls[0].label = new_text
+        task.controls[0].visible = True
+        task.controls.pop(1)
+        self.page.update()

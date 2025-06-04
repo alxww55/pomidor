@@ -15,11 +15,54 @@ class Timer:
         self.is_running = False
         self.is_paused = False
         self.time_value = f"{self.minutes:02}:{self.seconds:02}"
-        self.TEXT = ft.Text(value=self.time_value, font_family="LexendDeca", size=126, color=self.WHITE)
-        self.START_BUTTON = ft.FilledButton(text="START", bgcolor=self.WHITE, width=160, style=ft.ButtonStyle(color=self.BG_GREY, text_style=ft.TextStyle(font_family="LexendDeca", size=17), shape=ft.RoundedRectangleBorder(radius=12)), visible=True, on_click=self.start_timer)
-        self.PAUSE_BUTTON = ft.FilledButton(text="PAUSE", bgcolor=self.WHITE, width=160, style=ft.ButtonStyle(color=self.BG_GREY, text_style=ft.TextStyle(font_family="LexendDeca", size=17), shape=ft.RoundedRectangleBorder(radius=12)), visible=False, on_click=self.pause_timer)
-        self.CONCENTRATION_BUTTON = ft.TextButton(text="Concentration",style=ft.ButtonStyle(color=self.WHITE, bgcolor=self.RED, text_style=ft.TextStyle(font_family="LexendDeca", size=17), shape=ft.RoundedRectangleBorder(radius=5), padding=ft.Padding(left=12, top=29, right=12, bottom=29)), width=150, on_click=self.change_mode)
-        self.BREAK_BUTTON = ft.TextButton(text="Take a Break",style=ft.ButtonStyle(color=self.WHITE, text_style=ft.TextStyle(font_family="LexendDeca", size=17), shape=ft.RoundedRectangleBorder(radius=5), padding=ft.Padding(left=12, top=29, right=12, bottom=29)), width=150, on_click=self.change_mode)
+
+        self.TEXT = ft.Text(
+            value=self.time_value,
+            font_family="LexendDeca",
+            size=126,
+            color=self.WHITE
+        )
+
+        self.START_BUTTON = ft.FilledButton(
+            text="START",
+            bgcolor=self.WHITE,
+            width=160,
+            style=ft.ButtonStyle(color=self.BG_GREY, text_style=ft.TextStyle(font_family="LexendDeca", size=17),
+            shape=ft.RoundedRectangleBorder(radius=12)),
+            visible=True,
+            on_click=self.start_timer
+        )
+
+        self.PAUSE_BUTTON = ft.FilledButton(
+            text="PAUSE",
+            bgcolor=self.WHITE,
+            width=160,
+            style=ft.ButtonStyle(color=self.BG_GREY, text_style=ft.TextStyle(font_family="LexendDeca", size=17),
+            shape=ft.RoundedRectangleBorder(radius=12)),
+            visible=False,
+            on_click=self.pause_timer
+        )
+
+        self.CONCENTRATION_BUTTON = ft.TextButton(
+            text="Concentration",
+            style=ft.ButtonStyle(
+                color=self.WHITE,
+                bgcolor=self.RED, text_style=ft.TextStyle(font_family="LexendDeca", size=17),
+                shape=ft.RoundedRectangleBorder(radius=5),
+                padding=ft.Padding(left=12, top=29, right=12, bottom=29)),
+                width=150,
+                on_click=self.change_mode
+            )
+        
+        self.BREAK_BUTTON = ft.TextButton(
+            text="Take a Break",
+            style=ft.ButtonStyle(color=self.WHITE, text_style=ft.TextStyle(font_family="LexendDeca", size=17),
+            shape=ft.RoundedRectangleBorder(radius=5),
+            padding=ft.Padding(left=12, top=29, right=12, bottom=29)),
+            width=150,
+            on_click=self.change_mode
+        )
+
         self.TOOLBAR = ft.Container(
             content=ft.Row(
                 controls=[
@@ -35,7 +78,23 @@ class Timer:
             border_radius=8,
             margin=ft.Margin(left=0, top=26, right=0, bottom=0)
         )
-        self.TIMER = ft.Column(controls=[self.TOOLBAR, ft.Container(content=self.TEXT, height=150, margin=ft.Margin(left=0, top=-10, right=0, bottom=18)), ft.Container(content=self.START_BUTTON), ft.Container(content=self.PAUSE_BUTTON, margin=ft.Margin(left=0, top=-10, right=0, bottom=10))], horizontal_alignment=ft.CrossAxisAlignment.CENTER)
+
+        self.TIMER = ft.Column(
+            controls=[self.TOOLBAR,
+                      ft.Container(
+                          content=self.TEXT,
+                          height=150,
+                          margin=ft.Margin(left=0, top=-10, right=0, bottom=18)),
+                          ft.Container(
+                                content=self.START_BUTTON
+                            ),
+                          ft.Container(
+                                content=self.PAUSE_BUTTON,
+                                margin=ft.Margin(left=0, top=-10, right=0, bottom=10)
+                            )
+                        ],
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER
+        )
 
     def add_timer(self) -> ft.Container:
         return self.TIMER
